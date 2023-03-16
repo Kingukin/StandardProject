@@ -8,7 +8,7 @@ SRC_DIR = ./src
 OBJ_DIR = ./obj
 
 SRCS = $(wildcard $(SRC_DIR)/*$(SRC_EXT))
-OBJS = $(patsubst $(SRC_DIR)/%.o,$(OBJ_DIR)/%.o,$(SRCS:$(SRC_EXT)=.o))
+OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 DEPS = $(OBJS:.o=.d)
 
 CFLAGS = -Wall -I$(INC_DIR)
