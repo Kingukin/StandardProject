@@ -11,8 +11,8 @@ SRCS = $(wildcard $(SRC_DIR)/*$(SRC_EXT))
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 DEPS = $(OBJS:.o=.d)
 
-CFLAGS = -Wall -I$(INC_DIR)
-LDFLAGS = 
+CFLAGS = -Wall -I$(INC_DIR) `root-config --cflags`
+LDFLAGS = `root-config --glibs`
 
 all : $(TARGET)
 
