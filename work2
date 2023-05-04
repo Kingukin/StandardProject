@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void Saving(char* filename,double* tau1, double* zeta1, double* theta1)
+{
+	char s1[100],c1[100],c2[100],c3[100];
+    int i=0;
+    FILE *fp = fopen(filename, "r");
+    while (fgets(s1,100,fp)!=NULL)
+    {
+        sscanf(s1,"%s %lg, %s %lg, %s %lg",c1,tau1+i,c2,zeta1+i,c3,theta1+i);
+        printf("%lg, %lg, %lg\n",tau1[i],zeta1[i],theta1[i]);
+        i++;
+    }
+    return 0;
+}
+
+int main()
+{
+    char file1[100]="theta para conv up.txt";
+    double tau1[16],zeta1[16],theta1[16];
+    Saving(file1, tau1, zeta1, theta1);
+    printf("%lg",tau1[2]);
+    return 0;
+}
