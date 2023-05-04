@@ -1,6 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+double square(double num)
+{
+    return num*num;
+}
+
+void integral(double* tau, double* zeta, double* theta)
+{
+    int i=0;
+    double sum=0, subsum;
+    
+    for(i=0;i<15;i++)
+    {
+        subsum=(((square((zeta[i+1]-zeta[i])/(tau[i+1]-tau[i]))+square(zeta[i])*square((theta[i+1]-theta[i])/(tau[i+1]-tau[i])))/2+1/zeta[i])*(tau[i+1]-tau[i]));
+        sum+=subsum;
+    }
+    
+    printf("%lg",sum);
+    return;
+}
+
+
+
 void Saving(char* filename,double* tau1, double* zeta1, double* theta1)
 {
 	char s1[100],c1[100],c2[100],c3[100];
@@ -12,14 +34,14 @@ void Saving(char* filename,double* tau1, double* zeta1, double* theta1)
         printf("%lg, %lg, %lg\n",tau1[i],zeta1[i],theta1[i]);
         i++;
     }
-    return 0;
+    return;
 }
 
 int main()
 {
-    char file1[100]="theta para conv up.txt";
+    char file1[100]="bestpath.txt";
     double tau1[16],zeta1[16],theta1[16];
     Saving(file1, tau1, zeta1, theta1);
-    printf("%lg",tau1[2]);
+    integral(tau1,zeta1,theta1);
     return 0;
 }
